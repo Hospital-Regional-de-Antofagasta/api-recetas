@@ -1,0 +1,9 @@
+{
+  "name": "API-Recetas",
+  "version": "1.0.0",
+  "description": "API encargada de responder consultas para leer y/o modificar datos de las recetas y pases de los pacientes de HRA.",
+  "main": "index.js",
+  "repository": "https://DesarrolloHRA@bitbucket.org/DesarrolloHRA/api-recetas.git",
+  "author": "Claudio González Salazar <pyrates_claudio@hotmail.com>",
+  "license": "MIT"
+}
