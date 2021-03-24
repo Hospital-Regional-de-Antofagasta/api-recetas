@@ -1,0 +1,13 @@
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
+
+const Recetas =mongoose.model('Receta', new Schema({
+    Fld_NroRecetaOriginal: Number,
+    Fld_TipoRecetOriginal: Number,
+    Fld_FechaDigit: Date,
+    Fld_MedicoPrescriptor: String,
+    PAC_PAC_Numero: Number,
+    Fld_PatologiaCronica: String,
+}))
+
+module.exports = Recetas
