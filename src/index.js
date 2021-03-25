@@ -15,6 +15,9 @@ mongoose.connect(process.env.MONGO_URI,{ useNewUrlParser: true, useUnifiedTopolo
 app.use('/recetas',recetas)
 
 
-module.exports = app
+//module.exports = app
 
+module.exports = (req,res)=>{
+    res.send('Hello Mundo')
+}
 
