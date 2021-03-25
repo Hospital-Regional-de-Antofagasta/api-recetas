@@ -8,6 +8,13 @@ const Recetas =mongoose.model('Receta', new Schema({
     Fld_MedicoPrescriptor: String,
     PAC_PAC_Numero: Number,
     Fld_PatologiaCronica: String,
+    Pases: [
+        {
+            Fld_NroReceta: Number,
+            Fld_FechaEmision: Date,
+            Fld_Pase: Number
+        }
+    ]
 }))
 
 module.exports = Recetas
