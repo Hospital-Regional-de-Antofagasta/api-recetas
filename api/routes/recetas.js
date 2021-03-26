@@ -2,7 +2,6 @@ const express = require('express')
 const Recetas = require('../models/Recetas')
 const RecetasDetalles = require('../models/Recetas_detalles')
 //const{estaAutenticado} = require('../auth')
-//Recetas.find({PAC_PAC_Numero: req.params.numero})
 const router = express.Router()
 
 router.get('/recetas_paciente/:numero', async (req, res) =>{
