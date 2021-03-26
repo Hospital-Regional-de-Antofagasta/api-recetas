@@ -1,10 +1,10 @@
 const express = require('express')
 const Recetas = require('../models/Recetas')
 const RecetasDetalles = require('../models/Recetas_detalles')
-//const{estaAutenticado} = require('../auth')
+const estaAutenticado = require('../middleware/auth')
 const router = express.Router()
 
-router.get('/recetas_paciente/:numero', async (req, res) =>{
+router.get('/recetas_paciente/:numero',estaAutenticado, async (req, res) =>{
     console.log(req.params.numero)
         
     await Recetas.find({
@@ -15,7 +15,7 @@ router.get('/recetas_paciente/:numero', async (req, res) =>{
        
 })
 
-router.get('/detalles_receta/:numero&:tipo', async(req, res) =>{
+router.get('/detalles_receta/:numero&:tipo',estaAutenticado, async(req, res) =>{
     console.log(req.params.numero)
     console.log(req.params.tipo)
     Promise.all([
