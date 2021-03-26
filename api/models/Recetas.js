@@ -15,6 +15,6 @@ const Recetas =mongoose.model('Receta', new Schema({
             Fld_Pase: Number
         }
     ]
-}))
+}),'Recetas')
 
 module.exports = Recetas

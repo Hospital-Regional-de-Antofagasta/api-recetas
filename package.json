@@ -12,9 +12,14 @@
     "@babel/preset-env": "^7.13.12",
     "jest": "^26.6.3"
   },
+  "scripts": {
+    "build": "rm -rf public && mkdir public && echo 'Custom Build' > ./public/index.html"
+  },
+  
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
     "axios": "^0.21.1",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongoose": "^5.12.2"
   }

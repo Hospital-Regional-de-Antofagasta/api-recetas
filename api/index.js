@@ -10,14 +10,11 @@ app.use(cors())
 mongoose.connect(process.env.MONGO_URI,{ useNewUrlParser: true, useUnifiedTopology: true})
 
 
+ app.use('/api/recetas',recetas)
 
 
-app.use('/recetas',recetas)
+ app.get('/a', (req, res) => {
+    res.send('El index funciona.')
+})
 
-
-//module.exports = app
-
-module.exports = (req,res)=>{
-    res.send('Hello Mundo')
-}
-
+module.exports = app
