@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const secreto = 'mi-secreto'
+const secreto = process.env.JWT_SECRET
 
 const estaAutenticado = (req, res, next) => {
     const token = req.headers.authorization

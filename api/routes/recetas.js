@@ -4,16 +4,15 @@ const RecetasDetalles = require('../models/Recetas_detalles')
 const estaAutenticado = require('../middleware/auth')
 const router = express.Router()
 
-router.get('/recetas_paciente/:numero',estaAutenticado, async (req, res) =>{
-    try{
-        await Recetas.find({
-            PAC_PAC_Numero: req.params.numero
-        })    
-        .exec()
-        .then(x => res.status(200).send(x))
-    }catch(error){
+router.get('/recetas_paciente/:numero',estaAutenticado, (req, res) =>{
+    Recetas.find({
+        PAC_PAC_Numero: req.params.numero
+    })    
+    .exec()
+    .then(x => res.status(200).send(x))
+    .catch(error =>{
         res.status(500).send({ respuesta:'Se produjo un error.' })
-    }    
+    }) 
 })
 
 router.get('/detalles_receta/:numero&:tipo',estaAutenticado, (req, res) =>{
