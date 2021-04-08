@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const Recetas =mongoose.model('Receta', new Schema({
+const Recetas =mongoose.model('receta', new Schema({
     Fld_NroRecetaOriginal: Number,
     Fld_TipoRecetOriginal: Number,
     Fld_FechaDigit: Date,
@@ -15,6 +15,6 @@ const Recetas =mongoose.model('Receta', new Schema({
             Fld_Pase: Number
         }
     ]
-}),'Recetas')
+}))
 
 module.exports = Recetas
