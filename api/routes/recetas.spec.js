@@ -2,6 +2,10 @@ const app = require('../index')
 const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken');
 const supertest = require("supertest")
+const recetasSeeds = require('../seed/recetasSeeds.json')
+const recetasDetallesSeeds = require('../seed/recetasDetallesSeeds.json')
+const Recetas = require('../models/Recetas')
+const RecetasDetalles = require('../models/RecetasDetalles')
 const request = supertest(app)
 const secreto = process.env.JWT_SECRET
 let token
@@ -11,47 +15,97 @@ beforeAll(async done =>{
     //Cerrar la conexión que se crea en el index.
     await mongoose.disconnect();
     //Conectar a la base de datos de prueba.
-    await mongoose.connect(`${process.env.MONGO_URI_TEST}recetasTest`, { useNewUrlParser: true, useUnifiedTopology: true })
+    await mongoose.connect(`${process.env.MONGO_URI_TEST}recetas_test`, { useNewUrlParser: true, useUnifiedTopology: true })
     token= jwt.sign(1, secreto)
     done()
 })
 
 
 afterAll(async (done) => {
-    // cerrar la coneccion a la bd
+    //Cerrar la conexión a la base de datos despues de la pruebas.
     await mongoose.connection.close()
     done()
 })
 
+beforeEach(async () => {
+    //Cargar los seeds a la base de datos.
+    for (const recetaSeed of recetasSeeds) {
+        await Promise.all([
+            Recetas.create(recetaSeed),
+        ])
+    }
+    for (const recetaDetallesSeed of recetasDetallesSeeds) {
+        await Promise.all([
+            RecetasDetalles.create(recetaDetallesSeed),
+        ])
+    }    
+})
+
+afterEach(async () => {
+    //Borrar el contenido de la colleccion en la base de datos despues de la pruebas.
+    await Recetas.deleteMany()
+    await RecetasDetalles.deleteMany()
+})
+
 describe('Endpoints', () => {
-    describe('recetas', () => {
+    describe('Recetas', () => {
         it('Intenta obtener las recetas de un paciente sin token', async done =>{ 
-            const res = {
-                status: jest.fn().mockReturnThis(),
-                send: jest.fn()
-            }
-            const respuesta= await request.get('/recetas/recetas_paciente/1',{},res)       
+            const respuesta= await request.get('/recetas/recetas_paciente/1')       
             expect(respuesta.status).toBe(403)
             done()
         })
-        it('Intenta obtener las recetas de un paciente con token', async done =>{            
-            const res = {
-                status: jest.fn().mockReturnThis(),
-                send: jest.fn(),
-                next: jest.fn(),
-                estaAutenticado: jest.fn().mockReturnValue(1)
-            }
-            const respuesta= await request.get('/recetas/recetas_paciente/1',{},res)
-                .set('Authorization',token)       
+        it('Intenta obtener las recetas de un paciente con token (Arreglo sin recetas)', async done =>{            
+            const respuesta= await request.get('/recetas/recetas_paciente/2')
+                .set('Authorization',token)      
             expect(respuesta.status).toBe(200)
-            done()
-        })        
-    })
-    describe('detallesRecetas', () => {
-        it('Intenta obtener los detalles de una receta sin token', async done =>{
-            const res= await request.get('/recetas/detalles_receta/:1234&:5')            
-            expect(res.status).toBe(403)
+            //Probar que el arreglo está vacío recetas.
+            const arregloRecetas=respuesta.body
+            expect(arregloRecetas).toStrictEqual([])
+            expect(arregloRecetas.length).toStrictEqual(0)
             done()
         })
+        it('Intenta obtener las recetas de un paciente con token (Arreglo con recetas)', async done =>{            
+            const respuesta= await request.get('/recetas/recetas_paciente/1')
+                .set('Authorization',token)
+            expect(respuesta.status).toBe(200)  
+            //Probar que el arreglo tiene dos recetas y que ambas son del mismo paciente.
+            const arregloRecetas=respuesta.body
+            expect(arregloRecetas.length).toStrictEqual(2)
+            const primeraReceta = arregloRecetas[0]
+            const numeroPacientePrimeraReceta = primeraReceta.PAC_PAC_Numero
+            expect(numeroPacientePrimeraReceta).toStrictEqual(1)
+            const segundaReceta = arregloRecetas[1]
+            const numeroPacienteSegundaReceta = segundaReceta.PAC_PAC_Numero
+            expect(numeroPacienteSegundaReceta).toStrictEqual(1)
+            done()
+        })         
+    })
+    describe('Detalles de Recetas', () => {        
+        it('Intenta obtener los detalles de una receta sin token', async done =>{
+            const respuesta = await request.get('/recetas/detalles_receta/25097726&5')            
+            expect(respuesta.status).toBe(403)
+            done()
+        })
+        it('Intenta obtener los detalles de una receta con token (No existe la receta y/o los detalles)', async done =>{
+            const respuesta = await request.get('/recetas/detalles_receta/25097727&5')
+                .set('Authorization',token)          
+            expect(respuesta.status).toBe(200)   
+            //Al no existir la receta o los detalles, se recibe un objeto vacio.
+            const detallesReceta=respuesta.body 
+            expect(detallesReceta).toStrictEqual({})
+            done()
+        })
+        it('Intenta obtener los detalles de una receta con token (Existe la receta y los detalles)', async done =>{
+            const respuesta = await request.get('/recetas/detalles_receta/25097726&5')
+                .set('Authorization',token)             
+            expect(respuesta.status).toBe(200)
+            //Al existir la receta y los detalles, el objeto resultante debe tener el número y tipo de la receta solicitada.
+            const detallesReceta=respuesta.body  
+            const numeroRecetaOriginal = detallesReceta.Fld_NroRecetaOriginal
+            const tipoRecetaOriginal = detallesReceta.Fld_TipoRecetOriginal
+            expect(numeroRecetaOriginal).toStrictEqual(25097726)
+            expect(tipoRecetaOriginal).toStrictEqual(5)
+            done()
+        })        
     })
 })
