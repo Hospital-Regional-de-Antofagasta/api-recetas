@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const RecetasDetalles =mongoose.model('Recetas_detalle', new Schema({
+const RecetasDetalles =mongoose.model('recetas_detalle', new Schema({
     Fld_NroRecetaOriginal: Number,
     Fld_TipoRecetOriginal: Number,
     Medicamentos: [
@@ -12,6 +12,6 @@ const RecetasDetalles =mongoose.model('Recetas_detalle', new Schema({
             Fld_CantDias: Number
         }
     ]
-}),'Recetas_detalles')
+}))
 
 module.exports = RecetasDetalles

@@ -1,0 +1,27 @@
+[
+    {
+        "Fld_NroRecetaOriginal":24492986,
+        "Fld_TipoRecetOriginal":5,
+        "Medicamentos":[
+           {
+              "FLD_MATNOMBRE":"PARACETAMOL CM 500 MG",
+              "Fld_Dosis":1,
+              "Fld_Dias":3,
+              "Fld_CantDias":2
+           }
+        ]
+     },
+     {
+        "Fld_NroRecetaOriginal":25097726,
+        "Fld_TipoRecetOriginal":5,
+        "Medicamentos":[
+           {
+              "FLD_MATNOMBRE":"PARACETAMOL CM 200 MG",
+              "Fld_Dosis":2,
+              "Fld_Dias":2,
+              "Fld_CantDias":4
+           }
+        ]
+     }
+     
+]
