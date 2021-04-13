@@ -1,15 +1,16 @@
 const Recetas = require('../models/Recetas')
 const RecetasDetalles = require('../models/RecetasDetalles')
+const {mensajes} = require ('../config')
 
 exports.getRecetasPaciente = (req, res) =>{
     try {
         Recetas.find({
-            PAC_PAC_Numero: req.params.numero
+            PAC_PAC_Numero: req.pacPacNumero
         })    
         .exec()
         .then(arregloRecetas => res.status(200).send(arregloRecetas))
     } catch (error) {
-        res.status(500).send('Recetas: ' + error + ' - ' + error.message)
+        res.status(500).send({ respuesta: mensajes.serverError})
     }
 }
 
@@ -27,10 +28,10 @@ exports.getDetallesReceta = (req, res) =>{
         ])
         .then(recetaConDetalles => {
             if (recetaConDetalles[0] === null || recetaConDetalles[1] === null) {
-                res.status(200).send({})
+                res.sendStatus(200)
                 return
             }
-            const recetaDetallada ={
+            const recetaDetallada = {
                 Fld_NroRecetaOriginal: recetaConDetalles[0]['Fld_NroRecetaOriginal'],
                 Fld_TipoRecetOriginal:recetaConDetalles[0]['Fld_TipoRecetOriginal'],
                 Fld_FechaDigit:recetaConDetalles[0]['Fld_FechaDigit'],            
@@ -43,7 +44,7 @@ exports.getDetallesReceta = (req, res) =>{
             res.status(200).send(recetaDetallada)
         })
     } catch (error) {
-        res.status(500).send('Detalles Receta: ' + error + ' - ' + error.message)
+        res.status(500).send({ respuesta: mensajes.serverError})
     }
 }
 
