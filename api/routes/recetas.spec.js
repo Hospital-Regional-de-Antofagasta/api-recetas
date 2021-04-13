@@ -2,8 +2,8 @@ const app = require('../index')
 const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken');
 const supertest = require("supertest")
-const recetasSeeds = require('../seed/recetasSeeds.json')
-const recetasDetallesSeeds = require('../seed/recetasDetallesSeeds.json')
+const recetasSeeds = require('../testSeeds/recetasSeeds.json')
+const recetasDetallesSeeds = require('../testSeeds/recetasDetallesSeeds.json')
 const Recetas = require('../models/Recetas')
 const RecetasDetalles = require('../models/RecetasDetalles')
 const request = supertest(app)
@@ -16,7 +16,6 @@ beforeAll(async done =>{
     await mongoose.disconnect();
     //Conectar a la base de datos de prueba.
     await mongoose.connect(`${process.env.MONGO_URI_TEST}recetas_test`, { useNewUrlParser: true, useUnifiedTopology: true })
-    token= jwt.sign(1, secreto)
     done()
 })
 
@@ -50,12 +49,14 @@ afterEach(async () => {
 describe('Endpoints', () => {
     describe('Recetas', () => {
         it('Intenta obtener las recetas de un paciente sin token', async done =>{ 
-            const respuesta= await request.get('/recetas/recetas_paciente/1')       
+            const respuesta = await request.get('/recetas/recetas_paciente')      
             expect(respuesta.status).toBe(403)
+            expect(respuesta.body.respuesta).toBeTruthy()
             done()
         })
         it('Intenta obtener las recetas de un paciente con token (Arreglo sin recetas)', async done =>{            
-            const respuesta= await request.get('/recetas/recetas_paciente/2')
+            token = jwt.sign({PAC_PAC_Numero: 2}, secreto)
+            const respuesta = await request.get('/recetas/recetas_paciente')
                 .set('Authorization',token)      
             expect(respuesta.status).toBe(200)
             //Probar que el arreglo está vacío recetas.
@@ -65,11 +66,12 @@ describe('Endpoints', () => {
             done()
         })
         it('Intenta obtener las recetas de un paciente con token (Arreglo con recetas)', async done =>{            
-            const respuesta= await request.get('/recetas/recetas_paciente/1')
+            token = jwt.sign({PAC_PAC_Numero: 1}, secreto)
+            const respuesta = await request.get('/recetas/recetas_paciente')
                 .set('Authorization',token)
             expect(respuesta.status).toBe(200)  
             //Probar que el arreglo tiene dos recetas y que ambas son del mismo paciente.
-            const arregloRecetas=respuesta.body
+            const arregloRecetas = respuesta.body
             expect(arregloRecetas.length).toStrictEqual(2)
             const primeraReceta = arregloRecetas[0]
             const numeroPacientePrimeraReceta = primeraReceta.PAC_PAC_Numero
@@ -84,6 +86,7 @@ describe('Endpoints', () => {
         it('Intenta obtener los detalles de una receta sin token', async done =>{
             const respuesta = await request.get('/recetas/detalles_receta/25097726&5')            
             expect(respuesta.status).toBe(403)
+            expect(respuesta.body.respuesta).toBeTruthy()
             done()
         })
         it('Intenta obtener los detalles de una receta con token (No existe la receta y/o los detalles)', async done =>{
