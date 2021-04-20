@@ -72,13 +72,27 @@ describe('Endpoints', () => {
             expect(respuesta.status).toBe(200)  
             //Probar que el arreglo tiene dos recetas y que ambas son del mismo paciente.
             const arregloRecetas = respuesta.body
-            expect(arregloRecetas.length).toStrictEqual(2)
+            
             const primeraReceta = arregloRecetas[0]
             const numeroPacientePrimeraReceta = primeraReceta.PAC_PAC_Numero
-            expect(numeroPacientePrimeraReceta).toStrictEqual(1)
+            const numeroPrimeraRecetaOriginal = primeraReceta.Fld_NroRecetaOriginal
+            const tipoPrimeraRecetaOriginal = primeraReceta.Fld_TipoRecetOriginal
+           
             const segundaReceta = arregloRecetas[1]
             const numeroPacienteSegundaReceta = segundaReceta.PAC_PAC_Numero
+            const numeroSegundaRecetaOriginal = segundaReceta.Fld_NroRecetaOriginal
+            const tipoSegundaRecetaOriginal = segundaReceta.Fld_TipoRecetOriginal
+            
+
+            expect(arregloRecetas.length).toStrictEqual(2)
+
+            expect(numeroPacientePrimeraReceta).toStrictEqual(1)
+            expect(numeroPrimeraRecetaOriginal).toStrictEqual(24492986)
+            expect(tipoPrimeraRecetaOriginal).toStrictEqual(5)
+
             expect(numeroPacienteSegundaReceta).toStrictEqual(1)
+            expect(numeroSegundaRecetaOriginal).toStrictEqual(25097726)
+            expect(tipoSegundaRecetaOriginal).toStrictEqual(5)
             done()
         })         
     })
