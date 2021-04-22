@@ -1,6 +1,6 @@
 const Recetas = require('../models/Recetas')
 const RecetasDetalles = require('../models/RecetasDetalles')
-const {mensajes} = require ('../config')
+const {mensajesRecetas} = require ('../config')
 
 exports.getRecetasPaciente = async (req, res) =>{
     try {
@@ -10,7 +10,7 @@ exports.getRecetasPaciente = async (req, res) =>{
         .exec()
         res.status(200).send(arregloRecetas)
     } catch (error) {
-        res.status(500).send({ respuesta: mensajes.serverError})
+        res.status(500).send({ respuesta: mensajesRecetas.serverError})
     }
 }
 
@@ -42,7 +42,7 @@ exports.getDetallesReceta = async (req, res) =>{
         }
         res.status(200).send(recetaDetallada)
     } catch (error) {
-        res.status(500).send({ respuesta: mensajes.serverError})
+        res.status(500).send({ respuesta: mensajesRecetas.serverError})
     }
 }
 
