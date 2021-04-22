@@ -1,0 +1,37 @@
+[
+    {
+        "Fld_NroRecetaOriginal":24492986,
+        "Fld_TipoRecetOriginal":5,
+        "Fld_FechaDigit":"2020-12-18T14:21:01.643Z",
+        "PAC_PAC_Numero":1,
+        "Fld_PatologiaCronica":"Asma - EPOC",
+        "Fld_MedicoPrescriptor":"ALVARO PIZARRO GONZALEZ",
+        "Pases":[
+            {
+                "Fld_NroReceta":24492990,
+                "Fld_FechaEmision":"2021-04-16T04:00:00.000Z",
+                "Fld_Pase":5
+            },
+            {
+                "Fld_NroReceta":24492991,
+                "Fld_FechaEmision":"2021-05-18T04:00:00.000Z",
+                "Fld_Pase":6
+            }
+        ]        
+    },
+    {
+        "Fld_NroRecetaOriginal":25097726,
+        "Fld_TipoRecetOriginal":5,
+        "Fld_FechaDigit":"2020-10-30T11:38:13.570Z",
+        "Fld_MedicoPrescriptor":"GABRIEL MARTINEZ FUENTES",
+        "PAC_PAC_Numero":1,
+        "Fld_PatologiaCronica":"Demencia y Trastornos Mentales Organicos",
+        "Pases":[
+           {
+              "Fld_NroReceta":25097731,
+              "Fld_FechaEmision":"2021-03-30T03:00:00.000Z",
+              "Fld_Pase":6
+           }
+        ]
+     }
+]
