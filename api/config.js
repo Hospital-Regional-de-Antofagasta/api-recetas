@@ -1,6 +1,6 @@
 const ConfigApiRecetas = require('./models/ConfigApiRecetas')
 
-let mensajesRecetas = {
+let mensajes = {
     forbiddenAccess: 'No tiene la autorización para realizar esta acción.',
     serverError: 'Se produjo un error.',
 }
@@ -8,7 +8,7 @@ let mensajesRecetas = {
 const loadConfig = async () => {
     try {
         const config = await ConfigApiRecetas.findOne().exec()
-        mensajesRecetas = config.mensajesRecetas
+        mensajes = config.mensajes
     } catch (error) {
 
     }
@@ -16,5 +16,5 @@ const loadConfig = async () => {
 
 module.exports = {
     loadConfig,
-    mensajesRecetas
+    mensajes
  }
