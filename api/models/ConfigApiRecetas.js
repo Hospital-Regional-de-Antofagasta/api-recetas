@@ -7,6 +7,7 @@ const ConfigApiRecetas = mongoose.model(
     mensajesRecetas: {
       forbiddenAccess: String,
       serverError: String,
+      version: Number,
     },
   })
 );
