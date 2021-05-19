@@ -1,27 +1,26 @@
 [
-    {
-        "numeroRecetaOriginal":24492986,
-        "tipoRecetaOriginal":5,
-        "medicamentos":[
-           {
-              "nombreMaterial":"PARACETAMOL CM 500 MG",
-              "dosis":1,
-              "dias":3,
-              "cantidadDias":2
-           }
-        ]
-     },
-     {
-        "numeroRecetaOriginal":25097726,
-        "tipoRecetaOriginal":5,
-        "medicamentos":[
-           {
-              "nombreMaterial":"PARACETAMOL CM 200 MG",
-              "dosis":2,
-              "dias":2,
-              "cantidadDias":4
-           }
-        ]
-     }
-     
+  {
+    "numeroRecetaOriginal": 24492986,
+    "tipoRecetaOriginal": 5,
+    "medicamentos": [
+      {
+        "nombreMaterial": "PARACETAMOL CM 500 MG",
+        "dosis": 1,
+        "dias": 3,
+        "cantidadDias": 2
+      }
+    ]
+  },
+  {
+    "numeroRecetaOriginal": 25097726,
+    "tipoRecetaOriginal": 5,
+    "medicamentos": [
+      {
+        "nombreMaterial": "PARACETAMOL CM 200 MG",
+        "dosis": 2,
+        "dias": 2,
+        "cantidadDias": 4
+      }
+    ]
+  }
 ]
