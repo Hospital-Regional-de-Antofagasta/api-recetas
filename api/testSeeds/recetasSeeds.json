@@ -5,6 +5,7 @@
     "numeroPaciente": 1,
     "patologiaCronica": "Asma - EPOC",
     "medicoPrescriptor": "ALVARO PIZARRO GONZALEZ",
+    "recetaRetenida": false,
     "pases": [
       {
         "numeroReceta": 24492990,
@@ -24,6 +25,7 @@
     "medicoPrescriptor": "GABRIEL MARTINEZ FUENTES",
     "numeroPaciente": 1,
     "patologiaCronica": "Demencia y Trastornos Mentales Organicos",
+    "recetaRetenida": false,
     "pases": [
       {
         "numeroReceta": 25097731,

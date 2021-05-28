@@ -12,6 +12,7 @@ const RecetasDetalles = mongoose.model(
         dosis: Number,
         dias: Number,
         cantidadDias: Number,
+        medicamentoControlado: Boolean
       },
     ],
   })
