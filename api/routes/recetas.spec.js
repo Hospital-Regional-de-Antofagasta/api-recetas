@@ -18,30 +18,25 @@ beforeAll(async (done) => {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
-  done();
-});
-
-afterAll(async (done) => {
-  //Cerrar la conexión a la base de datos despues de la pruebas.
-  await mongoose.connection.close();
-  done();
-});
-
-beforeEach(async () => {
-  //Cargar los seeds a la base de datos.
-  for (const recetaSeed of recetasSeeds) {
+   //Cargar los seeds a la base de datos.
+   for (const recetaSeed of recetasSeeds) {
     await Promise.all([Recetas.create(recetaSeed)]);
   }
   for (const recetaDetallesSeed of recetasDetallesSeeds) {
     await Promise.all([RecetasDetalles.create(recetaDetallesSeed)]);
   }
+  done();
 });
 
-afterEach(async () => {
+afterAll(async (done) => {
   //Borrar el contenido de la colleccion en la base de datos despues de la pruebas.
   await Recetas.deleteMany();
   await RecetasDetalles.deleteMany();
+  //Cerrar la conexión a la base de datos despues de la pruebas.
+  await mongoose.connection.close();
+  done();
 });
+
 
 describe("Endpoints", () => {
   describe("Recetas", () => {
@@ -84,6 +79,7 @@ describe("Endpoints", () => {
       expect(primeraReceta.numeroPaciente).toStrictEqual(1);
       expect(primeraReceta.numeroRecetaOriginal).toStrictEqual(24492986);
       expect(primeraReceta.tipoRecetaOriginal).toStrictEqual(5);
+      expect(primeraReceta.recetaRetenida).toStrictEqual(false);
       expect(primeraReceta.pases.length).toStrictEqual(2);
       expect(primerPase.numeroReceta).toStrictEqual(24492990);
       expect(primerPase.numeroPase).toStrictEqual(5);
@@ -93,6 +89,7 @@ describe("Endpoints", () => {
       expect(segundaReceta.numeroPaciente).toStrictEqual(1);
       expect(segundaReceta.numeroRecetaOriginal).toStrictEqual(25097726);
       expect(segundaReceta.tipoRecetaOriginal).toStrictEqual(5);
+      expect(segundaReceta.recetaRetenida).toStrictEqual(false);
       expect(segundaReceta.pases.length).toStrictEqual(1);
       expect(tercerPase.numeroReceta).toStrictEqual(25097731);
       expect(tercerPase.numeroPase).toStrictEqual(6);
@@ -109,6 +106,7 @@ describe("Endpoints", () => {
       done();
     });
     it("Intenta obtener los detalles de una receta con token (No existe la receta y/o los detalles)", async (done) => {
+      token = jwt.sign({ numeroPaciente: 1 }, secreto);
       const respuesta = await request
         .get("/v1/recetas/detalles_receta/25097727&5")
         .set("Authorization", token);
@@ -119,6 +117,7 @@ describe("Endpoints", () => {
       done();
     });
     it("Intenta obtener los detalles de una receta con token (Existe la receta y los detalles)", async (done) => {
+      token = jwt.sign({ numeroPaciente: 1 }, secreto);
       const respuesta = await request
         .get("/v1/recetas/detalles_receta/25097726&5")
         .set("Authorization", token);
@@ -135,6 +134,7 @@ describe("Endpoints", () => {
       expect(medicamentos[0].dosis).toStrictEqual(2);
       expect(medicamentos[0].dias).toStrictEqual(2);
       expect(medicamentos[0].cantidadDias).toStrictEqual(4);
+      expect(medicamentos[0].medicamentoControlado).toStrictEqual(true);
       done();
     });
   });
