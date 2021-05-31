@@ -89,7 +89,7 @@ describe("Endpoints", () => {
       expect(segundaReceta.numeroPaciente).toStrictEqual(1);
       expect(segundaReceta.numeroRecetaOriginal).toStrictEqual(25097726);
       expect(segundaReceta.tipoRecetaOriginal).toStrictEqual(5);
-      expect(segundaReceta.recetaRetenida).toStrictEqual(false);
+      expect(segundaReceta.recetaRetenida).toStrictEqual(true);
       expect(segundaReceta.pases.length).toStrictEqual(1);
       expect(tercerPase.numeroReceta).toStrictEqual(25097731);
       expect(tercerPase.numeroPase).toStrictEqual(6);
@@ -127,6 +127,7 @@ describe("Endpoints", () => {
       const medicamentos = detallesReceta.medicamentos;
       expect(detallesReceta.numeroRecetaOriginal).toStrictEqual(25097726);
       expect(detallesReceta.tipoRecetaOriginal).toStrictEqual(5);
+      expect(detallesReceta.recetaRetenida).toStrictEqual(true);
       expect(medicamentos.length).toStrictEqual(1);
       expect(medicamentos[0].nombreMaterial).toStrictEqual(
         "PARACETAMOL CM 200 MG"

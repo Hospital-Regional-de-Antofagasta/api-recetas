@@ -25,7 +25,7 @@
     "medicoPrescriptor": "GABRIEL MARTINEZ FUENTES",
     "numeroPaciente": 1,
     "patologiaCronica": "Demencia y Trastornos Mentales Organicos",
-    "recetaRetenida": false,
+    "recetaRetenida": true,
     "pases": [
       {
         "numeroReceta": 25097731,
