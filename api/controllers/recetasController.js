@@ -35,6 +35,7 @@ exports.getDetallesReceta = async (req, res) => {
       medicoPrescriptor: recetaConDetalles[0]["medicoPrescriptor"],
       numeroPaciente: recetaConDetalles[0]["numeroPaciente"],
       patologiaCronica: recetaConDetalles[0]["patologiaCronica"],
+      recetaRetenida: recetaConDetalles[0]["recetaRetenida"],
       pases: recetaConDetalles[0]["pases"],
       medicamentos: recetaConDetalles[1]["medicamentos"],
     };
