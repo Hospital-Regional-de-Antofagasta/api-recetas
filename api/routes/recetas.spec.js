@@ -3,9 +3,7 @@ const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const supertest = require("supertest");
 const recetasSeeds = require("../testSeeds/recetasSeeds.json");
-const recetasDetallesSeeds = require("../testSeeds/recetasDetallesSeeds.json");
 const Recetas = require("../models/Recetas");
-const RecetasDetalles = require("../models/RecetasDetalles");
 const request = supertest(app);
 const secreto = process.env.JWT_SECRET;
 let token;
@@ -18,25 +16,18 @@ beforeAll(async (done) => {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
-   //Cargar los seeds a la base de datos.
-   for (const recetaSeed of recetasSeeds) {
-    await Promise.all([Recetas.create(recetaSeed)]);
-  }
-  for (const recetaDetallesSeed of recetasDetallesSeeds) {
-    await Promise.all([RecetasDetalles.create(recetaDetallesSeed)]);
-  }
+  //Cargar los seeds a la base de datos.
+  await Recetas.create(recetasSeeds);
   done();
 });
 
 afterAll(async (done) => {
   //Borrar el contenido de la colleccion en la base de datos despues de la pruebas.
   await Recetas.deleteMany();
-  await RecetasDetalles.deleteMany();
   //Cerrar la conexión a la base de datos despues de la pruebas.
   await mongoose.connection.close();
   done();
 });
-
 
 describe("Endpoints", () => {
   describe("Recetas", () => {
@@ -70,9 +61,11 @@ describe("Endpoints", () => {
       const primeraReceta = arregloRecetas[0];
       const primerPase = primeraReceta.pases[0];
       const segundoPase = primeraReceta.pases[1];
+      const medicamentosPrimeraReceta = primeraReceta.medicamentos;
 
       const segundaReceta = arregloRecetas[1];
       const tercerPase = segundaReceta.pases[0];
+      const medicamentosSegundaReceta = segundaReceta.medicamentos;
 
       expect(arregloRecetas.length).toStrictEqual(2);
 
@@ -85,6 +78,16 @@ describe("Endpoints", () => {
       expect(primerPase.numeroPase).toStrictEqual(5);
       expect(segundoPase.numeroReceta).toStrictEqual(24492991);
       expect(segundoPase.numeroPase).toStrictEqual(6);
+      expect(medicamentosPrimeraReceta.length).toStrictEqual(1);
+      expect(medicamentosPrimeraReceta[0].nombreMaterial).toStrictEqual(
+        "PARACETAMOL CM 200 MG"
+      );
+      expect(medicamentosPrimeraReceta[0].dosis).toStrictEqual(2);
+      expect(medicamentosPrimeraReceta[0].dias).toStrictEqual(2);
+      expect(medicamentosPrimeraReceta[0].cantidadDias).toStrictEqual(4);
+      expect(medicamentosPrimeraReceta[0].medicamentoControlado).toStrictEqual(
+        true
+      );
 
       expect(segundaReceta.numeroPaciente).toStrictEqual(1);
       expect(segundaReceta.numeroRecetaOriginal).toStrictEqual(25097726);
@@ -93,49 +96,17 @@ describe("Endpoints", () => {
       expect(segundaReceta.pases.length).toStrictEqual(1);
       expect(tercerPase.numeroReceta).toStrictEqual(25097731);
       expect(tercerPase.numeroPase).toStrictEqual(6);
-      done();
-    });
-  });
-  describe("Detalles de Recetas", () => {
-    it("Intenta obtener los detalles de una receta sin token", async (done) => {
-      const respuesta = await request.get(
-        "/v1/recetas/detalles_receta/25097726&5"
+      expect(medicamentosSegundaReceta.length).toStrictEqual(1);
+      expect(medicamentosSegundaReceta[0].nombreMaterial).toStrictEqual(
+        "PARACETAMOL CM 500 MG"
       );
-      expect(respuesta.status).toBe(401);
-      expect(respuesta.body.respuesta).toBeTruthy();
-      done();
-    });
-    it("Intenta obtener los detalles de una receta con token (No existe la receta y/o los detalles)", async (done) => {
-      token = jwt.sign({ numeroPaciente: 1 }, secreto);
-      const respuesta = await request
-        .get("/v1/recetas/detalles_receta/25097727&5")
-        .set("Authorization", token);
-      expect(respuesta.status).toBe(200);
-      //Al no existir la receta o los detalles, se recibe un objeto vacio.
-      const detallesReceta = respuesta.body;
-      expect(detallesReceta).toStrictEqual({});
-      done();
-    });
-    it("Intenta obtener los detalles de una receta con token (Existe la receta y los detalles)", async (done) => {
-      token = jwt.sign({ numeroPaciente: 1 }, secreto);
-      const respuesta = await request
-        .get("/v1/recetas/detalles_receta/25097726&5")
-        .set("Authorization", token);
-      expect(respuesta.status).toBe(200);
-      //Al existir la receta y los detalles, el objeto resultante debe tener el número y tipo de la receta solicitada.
-      const detallesReceta = respuesta.body;
-      const medicamentos = detallesReceta.medicamentos;
-      expect(detallesReceta.numeroRecetaOriginal).toStrictEqual(25097726);
-      expect(detallesReceta.tipoRecetaOriginal).toStrictEqual(5);
-      expect(detallesReceta.recetaRetenida).toStrictEqual(true);
-      expect(medicamentos.length).toStrictEqual(1);
-      expect(medicamentos[0].nombreMaterial).toStrictEqual(
-        "PARACETAMOL CM 200 MG"
+      expect(medicamentosSegundaReceta[0].dosis).toStrictEqual(1);
+      expect(medicamentosSegundaReceta[0].dias).toStrictEqual(3);
+      expect(medicamentosSegundaReceta[0].cantidadDias).toStrictEqual(2);
+      expect(medicamentosSegundaReceta[0].medicamentoControlado).toStrictEqual(
+        false
       );
-      expect(medicamentos[0].dosis).toStrictEqual(2);
-      expect(medicamentos[0].dias).toStrictEqual(2);
-      expect(medicamentos[0].cantidadDias).toStrictEqual(4);
-      expect(medicamentos[0].medicamentoControlado).toStrictEqual(true);
+
       done();
     });
   });
