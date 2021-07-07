@@ -3,21 +3,33 @@ const Schema = mongoose.Schema;
 
 const Recetas = mongoose.model(
   "receta",
-  new Schema({
-    numeroRecetaOriginal: Number,
-    tipoRecetaOriginal: Number,
-    medicoPrescriptor: String,
-    numeroPaciente: Number,
-    patologiaCronica: String,
-    recetaRetenida: Boolean,
-    pases: [
-      {
-        numeroReceta: Number,
-        fechaEmision: Date,
-        numeroPase: Number,
-      },
-    ],
-  })
+  new Schema(
+    {
+      numeroRecetaOriginal: Number,
+      tipoRecetaOriginal: Number,
+      medicoPrescriptor: String,
+      numeroPaciente: Number,
+      patologiaCronica: String,
+      recetaRetenida: Boolean,
+      pases: [
+        {
+          numeroReceta: Number,
+          fechaEmision: Date,
+          numeroPase: Number,
+        },
+      ],
+      medicamentos: [
+        {
+          nombreMaterial: String,
+          dosis: Number,
+          dias: Number,
+          cantidadDias: Number,
+          medicamentoControlado: Boolean,
+        },
+      ],
+    },
+    { timestamps: true }
+  )
 );
 
 module.exports = Recetas;

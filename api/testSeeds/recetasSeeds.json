@@ -17,6 +17,15 @@
         "fechaEmision": "2021-05-18T04:00:00.000Z",
         "numeroPase": 6
       }
+    ],
+    "medicamentos": [
+      {
+        "nombreMaterial": "PARACETAMOL CM 200 MG",
+        "dosis": 2,
+        "dias": 2,
+        "cantidadDias": 4,
+        "medicamentoControlado": true
+      }
     ]
   },
   {
@@ -31,6 +40,15 @@
         "numeroReceta": 25097731,
         "fechaEmision": "2021-03-30T03:00:00.000Z",
         "numeroPase": 6
+      }
+    ],
+    "medicamentos": [
+      {
+        "nombreMaterial": "PARACETAMOL CM 500 MG",
+        "dosis": 1,
+        "dias": 3,
+        "cantidadDias": 2,
+        "medicamentoControlado": false
       }
     ]
   }
