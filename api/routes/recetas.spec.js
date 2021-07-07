@@ -65,7 +65,7 @@ describe("Endpoints", () => {
 
       const segundaReceta = arregloRecetas[1];
       const tercerPase = segundaReceta.pases[0];
-      const medicamentosSegundaReceta = segundaReceta.medicamentos;
+      const medicamentosSegundaReceta = primeraReceta.medicamentos;
 
       expect(arregloRecetas.length).toStrictEqual(2);
 
