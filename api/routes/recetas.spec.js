@@ -69,7 +69,7 @@ describe("Endpoints", () => {
 
       expect(arregloRecetas.length).toStrictEqual(2);
 
-      expect(primeraReceta.numeroPaciente).toStrictEqual(1);
+      expect(primeraReceta.numeroPaciente).toBeFalsy();
       expect(primeraReceta.numeroRecetaOriginal).toStrictEqual(24492986);
       expect(primeraReceta.tipoRecetaOriginal).toStrictEqual(5);
       expect(primeraReceta.recetaRetenida).toStrictEqual(false);
@@ -89,7 +89,7 @@ describe("Endpoints", () => {
         true
       );
 
-      expect(segundaReceta.numeroPaciente).toStrictEqual(1);
+      expect(segundaReceta.numeroPaciente).toBeFalsy();
       expect(segundaReceta.numeroRecetaOriginal).toStrictEqual(25097726);
       expect(segundaReceta.tipoRecetaOriginal).toStrictEqual(5);
       expect(segundaReceta.recetaRetenida).toStrictEqual(true);
