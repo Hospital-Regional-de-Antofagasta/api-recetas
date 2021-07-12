@@ -2,14 +2,25 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ConfigApiRecetas = mongoose.model(
-  "config_api_receta",
+  "config_api_recetas",
   new Schema({
-    mensajesRecetas: {
-      forbiddenAccess: String,
-      serverError: String,
-      version: Number,
+    mensajes: {
+      forbiddenAccess: {
+        titulo: String,
+        mensaje: String,
+        color: String,
+        icono: String,
+      },
+      serverError: {
+        titulo: String,
+        mensaje: String,
+        color: String,
+        icono: String,
+      },
     },
-  })
+    version: Number,
+  }),
+  "config_api_recetas"
 );
 
 module.exports = ConfigApiRecetas;
