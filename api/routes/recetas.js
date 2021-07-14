@@ -4,7 +4,7 @@ const estaAutenticado = require("../middleware/auth");
 const router = express.Router();
 
 router.get(
-  "/recetas_paciente",
+  "/recetas-paciente",
   estaAutenticado,
   recetasController.getRecetasPaciente
 );

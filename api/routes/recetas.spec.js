@@ -38,7 +38,7 @@ afterAll(async (done) => {
 describe("Endpoints", () => {
   describe("Recetas", () => {
     it("Intenta obtener las recetas de un paciente sin token", async (done) => {
-      const respuesta = await request.get("/v1/recetas/recetas_paciente");
+      const respuesta = await request.get("/v1/recetas/recetas-paciente");
 
       const mensaje = await getMensajes("forbiddenAccess");
 
@@ -56,7 +56,7 @@ describe("Endpoints", () => {
     it("Intenta obtener las recetas de un paciente con token (Arreglo sin recetas)", async (done) => {
       token = jwt.sign({ numeroPaciente: 2 }, secreto);
       const respuesta = await request
-        .get("/v1/recetas/recetas_paciente")
+        .get("/v1/recetas/recetas-paciente")
         .set("Authorization", token);
       expect(respuesta.status).toBe(200);
       //Probar que el arreglo está vacío recetas.
@@ -68,7 +68,7 @@ describe("Endpoints", () => {
     it("Intenta obtener las recetas de un paciente con token (Arreglo con recetas)", async (done) => {
       token = jwt.sign({ numeroPaciente: 1 }, secreto);
       const respuesta = await request
-        .get("/v1/recetas/recetas_paciente")
+        .get("/v1/recetas/recetas-paciente")
         .set("Authorization", token);
       expect(respuesta.status).toBe(200);
       //Probar que el arreglo tiene dos recetas y que ambas son del mismo paciente.
