@@ -5,6 +5,10 @@ const supertest = require("supertest");
 const recetasSeeds = require("../testSeeds/recetasSeeds.json");
 const Recetas = require("../models/Recetas");
 const request = supertest(app);
+const { getMensajes } = require("../config");
+const ConfigApiRecetas = require("../models/ConfigApiRecetas");
+const configSeed = require("../testSeeds/configSeed.json");
+
 const secreto = process.env.JWT_SECRET;
 let token;
 
@@ -18,12 +22,14 @@ beforeAll(async (done) => {
   });
   //Cargar los seeds a la base de datos.
   await Recetas.create(recetasSeeds);
+  await ConfigApiRecetas.create(configSeed);
   done();
 });
 
 afterAll(async (done) => {
   //Borrar el contenido de la colleccion en la base de datos despues de la pruebas.
   await Recetas.deleteMany();
+  await ConfigApiRecetas.deleteMany();
   //Cerrar la conexión a la base de datos despues de la pruebas.
   await mongoose.connection.close();
   done();
@@ -32,15 +38,25 @@ afterAll(async (done) => {
 describe("Endpoints", () => {
   describe("Recetas", () => {
     it("Intenta obtener las recetas de un paciente sin token", async (done) => {
-      const respuesta = await request.get("/v1/recetas/recetas_paciente");
+      const respuesta = await request.get("/v1/recetas/recetas-paciente");
+
+      const mensaje = await getMensajes("forbiddenAccess");
+
       expect(respuesta.status).toBe(401);
-      expect(respuesta.body.respuesta).toBeTruthy();
+      expect(respuesta.body).toEqual({
+        respuesta: {
+          titulo: mensaje.titulo,
+          mensaje: mensaje.mensaje,
+          color: mensaje.color,
+          icono: mensaje.icono,
+        },
+      });
       done();
     });
     it("Intenta obtener las recetas de un paciente con token (Arreglo sin recetas)", async (done) => {
       token = jwt.sign({ numeroPaciente: 2 }, secreto);
       const respuesta = await request
-        .get("/v1/recetas/recetas_paciente")
+        .get("/v1/recetas/recetas-paciente")
         .set("Authorization", token);
       expect(respuesta.status).toBe(200);
       //Probar que el arreglo está vacío recetas.
@@ -52,7 +68,7 @@ describe("Endpoints", () => {
     it("Intenta obtener las recetas de un paciente con token (Arreglo con recetas)", async (done) => {
       token = jwt.sign({ numeroPaciente: 1 }, secreto);
       const respuesta = await request
-        .get("/v1/recetas/recetas_paciente")
+        .get("/v1/recetas/recetas-paciente")
         .set("Authorization", token);
       expect(respuesta.status).toBe(200);
       //Probar que el arreglo tiene dos recetas y que ambas son del mismo paciente.
