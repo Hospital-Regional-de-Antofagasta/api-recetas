@@ -2,7 +2,13 @@
   {
     "numeroRecetaOriginal": 24492986,
     "tipoRecetaOriginal": 5,
-    "numeroPaciente": 1,
+    "numeroPaciente": 
+      {
+        "_id": "6101834e912f6209f4851fdc",
+        "numero": 1,
+        "codigoEstablecimiento": "E01",
+        "nombreEstablecimiento": "Hospital Regional de Antofagasta"
+      },
     "patologiaCronica": "Asma - EPOC",
     "medicoPrescriptor": "ALVARO PIZARRO GONZALEZ",
     "recetaRetenida": false,
@@ -32,7 +38,13 @@
     "numeroRecetaOriginal": 25097726,
     "tipoRecetaOriginal": 5,
     "medicoPrescriptor": "GABRIEL MARTINEZ FUENTES",
-    "numeroPaciente": 1,
+    "numeroPaciente": 
+      {
+        "_id": "6101834e912f6209f4851fdc",
+        "numero": 1,
+        "codigoEstablecimiento": "E01",
+        "nombreEstablecimiento": "Hospital Regional de Antofagasta"
+      },
     "patologiaCronica": "Demencia y Trastornos Mentales Organicos",
     "recetaRetenida": true,
     "pases": [

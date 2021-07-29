@@ -54,7 +54,26 @@ describe("Endpoints", () => {
       done();
     });
     it("Intenta obtener las recetas de un paciente con token (Arreglo sin recetas)", async (done) => {
-      token = jwt.sign({ numeroPaciente: 2 }, secreto);
+      token = jwt.sign(
+        {
+          _id: "000000000000",
+          numerosPaciente: [
+            {
+              _id: "000000000000",
+              numero: 2,
+              codigoEstablecimiento: "E01",
+              nombreEstablecimiento: "Hospital Regional de Antofagasta",
+            },
+            {
+              _id: "000000000001",
+              numero: 9,
+              codigoEstablecimiento: "E02",
+              nombreEstablecimiento: "Hospital de Calama",
+            },
+          ],
+        },
+        secreto
+      );
       const respuesta = await request
         .get("/v1/recetas/recetas-paciente")
         .set("Authorization", token);
@@ -66,7 +85,26 @@ describe("Endpoints", () => {
       done();
     });
     it("Intenta obtener las recetas de un paciente con token (Arreglo con recetas)", async (done) => {
-      token = jwt.sign({ numeroPaciente: 1 }, secreto);
+      token = jwt.sign(
+        {
+          _id: "000000000000",
+          numerosPaciente: [
+            {
+              _id: "6101834e912f6209f4851fdc",
+              numero: 1,
+              codigoEstablecimiento: "E01",
+              nombreEstablecimiento: "Hospital Regional de Antofagasta",
+            },
+            {
+              _id: "000000000001",
+              numero: 5,
+              codigoEstablecimiento: "E02",
+              nombreEstablecimiento: "Hospital de Calama",
+            },
+          ],
+        },
+        secreto
+      );
       const respuesta = await request
         .get("/v1/recetas/recetas-paciente")
         .set("Authorization", token);
@@ -85,7 +123,9 @@ describe("Endpoints", () => {
 
       expect(arregloRecetas.length).toStrictEqual(2);
 
-      expect(primeraReceta.numeroPaciente).toBeFalsy();
+      expect(primeraReceta.numeroPaciente._id).toBeFalsy();
+      expect(primeraReceta.numeroPaciente.numero).toBeFalsy();
+      expect(primeraReceta.numeroPaciente.codigoEstablecimiento).toBeFalsy();
       expect(primeraReceta.numeroRecetaOriginal).toStrictEqual(24492986);
       expect(primeraReceta.tipoRecetaOriginal).toStrictEqual(5);
       expect(primeraReceta.recetaRetenida).toStrictEqual(false);
@@ -105,7 +145,9 @@ describe("Endpoints", () => {
         true
       );
 
-      expect(segundaReceta.numeroPaciente).toBeFalsy();
+      expect(segundaReceta.numeroPaciente._id).toBeFalsy();
+      expect(segundaReceta.numeroPaciente.numero).toBeFalsy();
+      expect(segundaReceta.numeroPaciente.codigoEstablecimiento).toBeFalsy();
       expect(segundaReceta.numeroRecetaOriginal).toStrictEqual(25097726);
       expect(segundaReceta.tipoRecetaOriginal).toStrictEqual(5);
       expect(segundaReceta.recetaRetenida).toStrictEqual(true);
