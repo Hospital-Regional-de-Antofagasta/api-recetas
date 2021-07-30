@@ -59,13 +59,11 @@ describe("Endpoints", () => {
           _id: "000000000000",
           numerosPaciente: [
             {
-              _id: "000000000000",
               numero: 2,
               codigoEstablecimiento: "E01",
               nombreEstablecimiento: "Hospital Regional de Antofagasta",
             },
             {
-              _id: "000000000001",
               numero: 9,
               codigoEstablecimiento: "E02",
               nombreEstablecimiento: "Hospital de Calama",
@@ -90,13 +88,11 @@ describe("Endpoints", () => {
           _id: "000000000000",
           numerosPaciente: [
             {
-              _id: "6101834e912f6209f4851fdc",
               numero: 1,
               codigoEstablecimiento: "E01",
               nombreEstablecimiento: "Hospital Regional de Antofagasta",
             },
             {
-              _id: "000000000001",
               numero: 5,
               codigoEstablecimiento: "E02",
               nombreEstablecimiento: "Hospital de Calama",

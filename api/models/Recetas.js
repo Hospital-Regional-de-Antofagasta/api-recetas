@@ -7,7 +7,6 @@ const schema = new Schema(
     tipoRecetaOriginal: Number,
     medicoPrescriptor: String,
     numeroPaciente: {
-      _id: { type: String, select: false },
       numero: { type: Number, select: false },
       codigoEstablecimiento: { type: String, select: false },
       nombreEstablecimiento: String,

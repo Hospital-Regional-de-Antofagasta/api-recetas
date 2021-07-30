@@ -4,7 +4,6 @@
     "tipoRecetaOriginal": 5,
     "numeroPaciente": 
       {
-        "_id": "6101834e912f6209f4851fdc",
         "numero": 1,
         "codigoEstablecimiento": "E01",
         "nombreEstablecimiento": "Hospital Regional de Antofagasta"
@@ -40,7 +39,6 @@
     "medicoPrescriptor": "GABRIEL MARTINEZ FUENTES",
     "numeroPaciente": 
       {
-        "_id": "6101834e912f6209f4851fdc",
         "numero": 1,
         "codigoEstablecimiento": "E01",
         "nombreEstablecimiento": "Hospital Regional de Antofagasta"
