@@ -36,7 +36,7 @@ afterAll(async (done) => {
 });
 
 describe("Endpoints", () => {
-  describe("Recetas", () => {
+  describe("/v1/recetas/recetas-paciente", () => {
     it("Intenta obtener las recetas de un paciente sin token", async (done) => {
       const respuesta = await request.get("/v1/recetas/recetas-paciente");
 
@@ -119,7 +119,6 @@ describe("Endpoints", () => {
 
       expect(arregloRecetas.length).toStrictEqual(2);
 
-      expect(primeraReceta.numeroPaciente._id).toBeFalsy();
       expect(primeraReceta.numeroPaciente.numero).toBeFalsy();
       expect(primeraReceta.numeroPaciente.codigoEstablecimiento).toBeFalsy();
       expect(primeraReceta.numeroRecetaOriginal).toStrictEqual(24492986);
@@ -141,7 +140,6 @@ describe("Endpoints", () => {
         true
       );
 
-      expect(segundaReceta.numeroPaciente._id).toBeFalsy();
       expect(segundaReceta.numeroPaciente.numero).toBeFalsy();
       expect(segundaReceta.numeroPaciente.codigoEstablecimiento).toBeFalsy();
       expect(segundaReceta.numeroRecetaOriginal).toStrictEqual(25097726);
