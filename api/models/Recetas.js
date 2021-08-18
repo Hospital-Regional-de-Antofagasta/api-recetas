@@ -9,6 +9,7 @@ const schema = new Schema(
     numeroPaciente: {
       numero: { type: Number, select: false },
       codigoEstablecimiento: { type: String, select: false },
+      hospital: {type: Object, select: false },
       nombreEstablecimiento: String,
     },
     patologiaCronica: String,
