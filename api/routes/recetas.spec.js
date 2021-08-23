@@ -57,24 +57,7 @@ describe("Endpoints", () => {
       token = jwt.sign(
         {
           _id: "000000000000",
-          numerosPaciente: [
-            {
-              numero: 2,
-              codigoEstablecimiento: "E01",
-              hospital: {
-                E01: 1
-              },
-              nombreEstablecimiento: "Hospital Regional de Antofagasta",
-            },
-            {
-              numero: 9,
-              codigoEstablecimiento: "E02",
-              hospital: {
-                E02: 1
-              },
-              nombreEstablecimiento: "Hospital de Calama",
-            },
-          ],
+          numeroPaciente:2,
         },
         secreto
       );
@@ -92,24 +75,7 @@ describe("Endpoints", () => {
       token = jwt.sign(
         {
           _id: "000000000000",
-          numerosPaciente: [
-            {
-              numero: 1,
-              codigoEstablecimiento: "E01",
-              hospital: {
-                E01: 1
-              },
-              nombreEstablecimiento: "Hospital Regional de Antofagasta",
-            },
-            {
-              numero: 5,
-              codigoEstablecimiento: "E02",
-              hospital: {
-                E02: 1
-              },
-              nombreEstablecimiento: "Hospital de Calama",
-            },
-          ],
+          numeroPaciente: 1,
         },
         secreto
       );
@@ -131,8 +97,7 @@ describe("Endpoints", () => {
 
       expect(arregloRecetas.length).toStrictEqual(2);
 
-      expect(primeraReceta.numeroPaciente.numero).toBeFalsy();
-      expect(primeraReceta.numeroPaciente.codigoEstablecimiento).toBeFalsy();
+      expect(primeraReceta.numeroPaciente).toBeFalsy();
       expect(primeraReceta.numeroRecetaOriginal).toStrictEqual(24492986);
       expect(primeraReceta.tipoRecetaOriginal).toStrictEqual(5);
       expect(primeraReceta.recetaRetenida).toStrictEqual(false);
@@ -152,8 +117,7 @@ describe("Endpoints", () => {
         true
       );
 
-      expect(segundaReceta.numeroPaciente.numero).toBeFalsy();
-      expect(segundaReceta.numeroPaciente.codigoEstablecimiento).toBeFalsy();
+      expect(segundaReceta.numeroPaciente).toBeFalsy();
       expect(segundaReceta.numeroRecetaOriginal).toStrictEqual(25097726);
       expect(segundaReceta.tipoRecetaOriginal).toStrictEqual(5);
       expect(segundaReceta.recetaRetenida).toStrictEqual(true);
