@@ -12,7 +12,7 @@ const configSeed = require("../testSeeds/configSeed.json");
 const secreto = process.env.JWT_SECRET;
 let token;
 
-beforeAll(async (done) => {
+beforeEach(async (done) => {
   //Cerrar la conexión que se crea en el index.
   await mongoose.disconnect();
   //Conectar a la base de datos de prueba.
@@ -26,7 +26,7 @@ beforeAll(async (done) => {
   done();
 });
 
-afterAll(async (done) => {
+afterEach(async (done) => {
   //Borrar el contenido de la colleccion en la base de datos despues de la pruebas.
   await Recetas.deleteMany();
   await ConfigApiRecetas.deleteMany();
@@ -85,18 +85,14 @@ describe("Endpoints", () => {
       expect(respuesta.status).toBe(200);
       //Probar que el arreglo tiene dos recetas y que ambas son del mismo paciente.
       const arregloRecetas = respuesta.body;
-
       const primeraReceta = arregloRecetas[0];
       const primerPase = primeraReceta.pases[0];
       const segundoPase = primeraReceta.pases[1];
       const medicamentosPrimeraReceta = primeraReceta.medicamentos;
-
       const segundaReceta = arregloRecetas[1];
       const tercerPase = segundaReceta.pases[0];
       const medicamentosSegundaReceta = segundaReceta.medicamentos;
-
       expect(arregloRecetas.length).toStrictEqual(2);
-
       expect(primeraReceta.numeroPaciente).toBeFalsy();
       expect(primeraReceta.numeroRecetaOriginal).toStrictEqual(24492986);
       expect(primeraReceta.tipoRecetaOriginal).toStrictEqual(5);
@@ -110,13 +106,13 @@ describe("Endpoints", () => {
       expect(medicamentosPrimeraReceta[0].nombreMaterial).toStrictEqual(
         "PARACETAMOL CM 200 MG"
       );
-      expect(medicamentosPrimeraReceta[0].dosis).toStrictEqual(2);
-      expect(medicamentosPrimeraReceta[0].dias).toStrictEqual(2);
-      expect(medicamentosPrimeraReceta[0].cantidadDias).toStrictEqual(4);
+      expect(medicamentosPrimeraReceta[0].dosis).toBeFalsy();
+      expect(medicamentosPrimeraReceta[0].dias).toBeFalsy();
+      expect(medicamentosPrimeraReceta[0].cantidadDias).toBeFalsy();
       expect(medicamentosPrimeraReceta[0].medicamentoControlado).toStrictEqual(
         true
       );
-
+      expect(medicamentosPrimeraReceta[0].mensaje).toBe('2 cada 6 HRS. por 2 día(s)')
       expect(segundaReceta.numeroPaciente).toBeFalsy();
       expect(segundaReceta.numeroRecetaOriginal).toStrictEqual(25097726);
       expect(segundaReceta.tipoRecetaOriginal).toStrictEqual(5);
@@ -128,13 +124,13 @@ describe("Endpoints", () => {
       expect(medicamentosSegundaReceta[0].nombreMaterial).toStrictEqual(
         "PARACETAMOL CM 500 MG"
       );
-      expect(medicamentosSegundaReceta[0].dosis).toStrictEqual(1);
-      expect(medicamentosSegundaReceta[0].dias).toStrictEqual(3);
-      expect(medicamentosSegundaReceta[0].cantidadDias).toStrictEqual(2);
+      expect(medicamentosSegundaReceta[0].dosis).toBeFalsy();
+      expect(medicamentosSegundaReceta[0].dias).toBeFalsy();
+      expect(medicamentosSegundaReceta[0].cantidadDias).toBeFalsy();
       expect(medicamentosSegundaReceta[0].medicamentoControlado).toStrictEqual(
         false
       );
-
+      expect(medicamentosSegundaReceta[0].mensaje).toBe('1 cada 12 HRS. por 3 día(s)')
       done();
     });
   });

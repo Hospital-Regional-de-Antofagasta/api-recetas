@@ -24,7 +24,8 @@
         "dosis": 2,
         "dias": 2,
         "cantidadDias": 4,
-        "medicamentoControlado": true
+        "medicamentoControlado": true,
+        "mensaje": "2 cada 6 HRS. por 2 día(s)"
       }
     ]
   },
@@ -48,7 +49,8 @@
         "dosis": 1,
         "dias": 3,
         "cantidadDias": 2,
-        "medicamentoControlado": false
+        "medicamentoControlado": false,
+        "mensaje": "1 cada 12 HRS. por 3 día(s)"
       }
     ]
   }

@@ -19,10 +19,11 @@ const schema = new Schema(
     medicamentos: [
       {
         nombreMaterial: String,
-        dosis: Number,
-        dias: Number,
-        cantidadDias: Number,
+        dosis: { type: Number, select: false },
+        dias: { type: Number, select: false },
+        cantidadDias: { type: Number, select: false },
         medicamentoControlado: Boolean,
+        mensaje: String,
       },
     ],
   },
