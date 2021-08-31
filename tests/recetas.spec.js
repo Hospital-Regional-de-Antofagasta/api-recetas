@@ -1,13 +1,13 @@
-const app = require("../app");
+const app = require("../api/app");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const supertest = require("supertest");
-const recetasSeeds = require("../testSeeds/recetasSeeds.json");
-const Recetas = require("../models/Recetas");
+const recetasSeeds = require("./testSeeds/recetasSeeds.json");
+const Recetas = require("../api/models/Recetas");
 const request = supertest(app);
-const { getMensajes } = require("../config");
-const ConfigApiRecetas = require("../models/ConfigApiRecetas");
-const configSeed = require("../testSeeds/configSeed.json");
+const { getMensajes } = require("../api/config");
+const ConfigApiRecetas = require("../api/models/ConfigApiRecetas");
+const configSeed = require("./testSeeds/configSeed.json");
 
 const secreto = process.env.JWT_SECRET;
 let token;
