@@ -106,9 +106,6 @@ describe("Endpoints", () => {
       expect(medicamentosPrimeraReceta[0].nombreMaterial).toStrictEqual(
         "PARACETAMOL CM 200 MG"
       );
-      expect(medicamentosPrimeraReceta[0].dosis).toBeFalsy();
-      expect(medicamentosPrimeraReceta[0].dias).toBeFalsy();
-      expect(medicamentosPrimeraReceta[0].cantidadDias).toBeFalsy();
       expect(medicamentosPrimeraReceta[0].medicamentoControlado).toStrictEqual(
         true
       );
@@ -124,9 +121,6 @@ describe("Endpoints", () => {
       expect(medicamentosSegundaReceta[0].nombreMaterial).toStrictEqual(
         "PARACETAMOL CM 500 MG"
       );
-      expect(medicamentosSegundaReceta[0].dosis).toBeFalsy();
-      expect(medicamentosSegundaReceta[0].dias).toBeFalsy();
-      expect(medicamentosSegundaReceta[0].cantidadDias).toBeFalsy();
       expect(medicamentosSegundaReceta[0].medicamentoControlado).toStrictEqual(
         false
       );
