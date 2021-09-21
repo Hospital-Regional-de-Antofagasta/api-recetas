@@ -16,11 +16,11 @@ mongoose.connect(connection, {
   useUnifiedTopology: true,
 });
 
-app.use("/v1/recetas", recetas);
-
 app.get("/v1/recetas/health", (req, res) => {
   res.status(200).send("ready");
 });
+
+app.use("/v1/recetas", recetas);
 
 if (require.main === module) {
   // true if file is executed
