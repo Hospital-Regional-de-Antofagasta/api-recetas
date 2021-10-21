@@ -1,0 +1,51 @@
+[
+  {
+    "numeroRecetaOriginal": 24492986,
+    "tipoRecetaOriginal": 5,
+    "numeroPaciente":1,
+    "patologiaCronica": "Asma - EPOC",
+    "medicoPrescriptor": "ALVARO PIZARRO GONZALEZ",
+    "recetaRetenida": false,
+    "pases": [
+      {
+        "numeroReceta": 24492990,
+        "fechaEmision": "2021-04-16T04:00:00.000Z",
+        "numeroPase": 5
+      },
+      {
+        "numeroReceta": 24492991,
+        "fechaEmision": "2021-05-18T04:00:00.000Z",
+        "numeroPase": 6
+      }
+    ],
+    "medicamentos": [
+      {
+        "nombreMaterial": "PARACETAMOL CM 200 MG",
+        "medicamentoControlado": true,
+        "mensaje": "2 cada 6 HRS. por 2 día(s)"
+      }
+    ]
+  },
+  {
+    "numeroRecetaOriginal": 25097726,
+    "tipoRecetaOriginal": 5,
+    "medicoPrescriptor": "GABRIEL MARTINEZ FUENTES",
+    "numeroPaciente":1,
+    "patologiaCronica": "Demencia y Trastornos Mentales Organicos",
+    "recetaRetenida": true,
+    "pases": [
+      {
+        "numeroReceta": 25097731,
+        "fechaEmision": "2021-03-30T03:00:00.000Z",
+        "numeroPase": 6
+      }
+    ],
+    "medicamentos": [
+      {
+        "nombreMaterial": "PARACETAMOL CM 500 MG",
+        "medicamentoControlado": false,
+        "mensaje": "1 cada 12 HRS. por 3 día(s)"
+      }
+    ]
+  }
+]
