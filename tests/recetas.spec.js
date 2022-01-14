@@ -82,103 +82,117 @@ describe("Endpoints", () => {
       //Probar que el arreglo tiene dos recetas y que ambas son del mismo paciente.
       const recetas = respuesta.body;
 
-      expect(recetas.length).toBe(2)
+      expect(recetas.length).toBe(2);
       // primera receta
-      expect(recetas[0].correlativo).toBe(1)
-      expect(recetas[0].numeroReceta).toBe(24492986)
-      expect(recetas[0].tipoReceta).toBe(5)
-      expect(recetas[0].rutPaciente).toBeFalsy()
-      expect(recetas[0].medicoPrescriptor).toBe("ALVARO PIZARRO GONZALEZ")
-      expect(recetas[0].patologia).toBe("Asma - EPOC")
-      expect(recetas[0].recetaRetenida).toBeFalsy()
+      expect(recetas[0].correlativo).toBe(1);
+      expect(recetas[0].numeroReceta).toBe(24492986);
+      expect(recetas[0].tipoReceta).toBe(5);
+      expect(recetas[0].rutPaciente).toBeFalsy();
+      expect(recetas[0].medicoPrescriptor).toBe("ALVARO PIZARRO GONZALEZ");
+      expect(recetas[0].patologia).toBe("Asma - EPOC");
+      expect(recetas[0].recetaRetenida).toBeFalsy();
       expect(Date.parse(recetas[0].fechaEmision)).toBe(
         Date.parse("2021-03-16T04:00:00.000Z")
       );
-      expect(recetas[0].codigoEstablecimiento).toBe("HRA")
-      expect(recetas[0].nombreEstablecimiento).toBe("Hospital Regional Antofagasta Dr. Leonardo Guzmán")
+      expect(recetas[0].codigoEstablecimiento).toBe("HRA");
+      expect(recetas[0].nombreEstablecimiento).toBe(
+        "Hospital Regional Antofagasta Dr. Leonardo Guzmán"
+      );
       // pases primera receta
       // primer pase
-      expect(recetas[0].pases[0].numeroReceta).toBe(24492990)
+      expect(recetas[0].pases[0].numeroReceta).toBe(24492990);
       expect(Date.parse(recetas[0].pases[0].fechaEmisionFutura)).toBe(
         Date.parse("2021-04-16T04:00:00.000Z")
       );
-      expect(recetas[0].pases[0].numeroPase).toBe(1)
+      expect(recetas[0].pases[0].numeroPase).toBe(1);
       // segundo pase
-      expect(recetas[0].pases[1].numeroReceta).toBe(24492991)
+      expect(recetas[0].pases[1].numeroReceta).toBe(24492991);
       expect(Date.parse(recetas[0].pases[1].fechaEmisionFutura)).toBe(
         Date.parse("2021-05-16T04:00:00.000Z")
       );
-      expect(recetas[0].pases[1].numeroPase).toBe(2)
+      expect(recetas[0].pases[1].numeroPase).toBe(2);
       // tercer pase
-      expect(recetas[0].pases[2].numeroReceta).toBe(24492992)
+      expect(recetas[0].pases[2].numeroReceta).toBe(24492992);
       expect(Date.parse(recetas[0].pases[2].fechaEmisionFutura)).toBe(
         Date.parse("2021-06-16T04:00:00.000Z")
       );
-      expect(recetas[0].pases[2].numeroPase).toBe(3)
+      expect(recetas[0].pases[2].numeroPase).toBe(3);
       // cuarto pase
-      expect(recetas[0].pases[3].numeroReceta).toBe(24492993)
+      expect(recetas[0].pases[3].numeroReceta).toBe(24492993);
       expect(Date.parse(recetas[0].pases[3].fechaEmisionFutura)).toBe(
         Date.parse("2021-07-16T04:00:00.000Z")
       );
-      expect(recetas[0].pases[3].numeroPase).toBe(4)
+      expect(recetas[0].pases[3].numeroPase).toBe(4);
       // quinto pase
-      expect(recetas[0].pases[4].numeroReceta).toBe(24492994)
+      expect(recetas[0].pases[4].numeroReceta).toBe(24492994);
       expect(Date.parse(recetas[0].pases[4].fechaEmisionFutura)).toBe(
         Date.parse("2021-08-16T04:00:00.000Z")
       );
-      expect(recetas[0].pases[4].numeroPase).toBe(5)
+      expect(recetas[0].pases[4].numeroPase).toBe(5);
       // medicamentos primera receta
-      expect(recetas[0].medicamentos[0].nombreMedicamento).toBe("PARACETAMOL CM 200 MG")
-      expect(recetas[0].medicamentos[0].medicamentoControlado).toBeTruthy()
-      expect(recetas[0].medicamentos[0].mensaje).toBe("2 cada 6 HRS. por 2 día(s)")
+      expect(recetas[0].medicamentos[0].nombreMedicamento).toBe(
+        "PARACETAMOL CM 200 MG"
+      );
+      expect(recetas[0].medicamentos[0].medicamentoControlado).toBeTruthy();
+      expect(recetas[0].medicamentos[0].mensaje).toBe(
+        "2 cada 6 HRS. por 2 día(s)"
+      );
       // segunda receta
-      expect(recetas[1].correlativo).toBe(2)
-      expect(recetas[1].numeroReceta).toBe(25097726)
-      expect(recetas[1].tipoReceta).toBe(5)
-      expect(recetas[1].rutPaciente).toBeFalsy()
-      expect(recetas[1].medicoPrescriptor).toBe("GABRIEL MARTINEZ FUENTES")
-      expect(recetas[1].patologia).toBe("Demencia y Trastornos Mentales Organicos")
-      expect(recetas[1].recetaRetenida).toBeTruthy()
+      expect(recetas[1].correlativo).toBe(2);
+      expect(recetas[1].numeroReceta).toBe(25097726);
+      expect(recetas[1].tipoReceta).toBe(5);
+      expect(recetas[1].rutPaciente).toBeFalsy();
+      expect(recetas[1].medicoPrescriptor).toBe("GABRIEL MARTINEZ FUENTES");
+      expect(recetas[1].patologia).toBe(
+        "Demencia y Trastornos Mentales Organicos"
+      );
+      expect(recetas[1].recetaRetenida).toBeTruthy();
       expect(Date.parse(recetas[1].fechaEmision)).toBe(
         Date.parse("2021-02-30T04:00:00.000Z")
       );
-      expect(recetas[1].codigoEstablecimiento).toBe("HRA")
-      expect(recetas[1].nombreEstablecimiento).toBe("Hospital Regional Antofagasta Dr. Leonardo Guzmán")
+      expect(recetas[1].codigoEstablecimiento).toBe("HRA");
+      expect(recetas[1].nombreEstablecimiento).toBe(
+        "Hospital Regional Antofagasta Dr. Leonardo Guzmán"
+      );
       // pases primera receta
       // primer pase
-      expect(recetas[1].pases[0].numeroReceta).toBe(25097731)
+      expect(recetas[1].pases[0].numeroReceta).toBe(25097731);
       expect(Date.parse(recetas[1].pases[0].fechaEmisionFutura)).toBe(
         Date.parse("2021-03-30T03:00:00.000Z")
       );
-      expect(recetas[1].pases[0].numeroPase).toBe(1)
+      expect(recetas[1].pases[0].numeroPase).toBe(1);
       // segundo pase
-      expect(recetas[1].pases[1].numeroReceta).toBe(25097732)
+      expect(recetas[1].pases[1].numeroReceta).toBe(25097732);
       expect(Date.parse(recetas[1].pases[1].fechaEmisionFutura)).toBe(
         Date.parse("2021-04-30T03:00:00.000Z")
       );
-      expect(recetas[1].pases[1].numeroPase).toBe(2)
+      expect(recetas[1].pases[1].numeroPase).toBe(2);
       // tercer pase
-      expect(recetas[1].pases[2].numeroReceta).toBe(25097733)
+      expect(recetas[1].pases[2].numeroReceta).toBe(25097733);
       expect(Date.parse(recetas[1].pases[2].fechaEmisionFutura)).toBe(
         Date.parse("2021-05-30T03:00:00.000Z")
       );
-      expect(recetas[1].pases[2].numeroPase).toBe(3)
+      expect(recetas[1].pases[2].numeroPase).toBe(3);
       // cuarto pase
-      expect(recetas[1].pases[3].numeroReceta).toBe(25097734)
+      expect(recetas[1].pases[3].numeroReceta).toBe(25097734);
       expect(Date.parse(recetas[1].pases[3].fechaEmisionFutura)).toBe(
         Date.parse("2021-06-30T03:00:00.000Z")
       );
-      expect(recetas[1].pases[3].numeroPase).toBe(4)
+      expect(recetas[1].pases[3].numeroPase).toBe(4);
       // quinto pase
-      expect(recetas[1].pases[4].numeroReceta).toBe(25097735)
+      expect(recetas[1].pases[4].numeroReceta).toBe(25097735);
       expect(Date.parse(recetas[1].pases[4].fechaEmisionFutura)).toBe(
         Date.parse("2021-07-30T03:00:00.000Z")
       );
-      expect(recetas[1].pases[4].numeroPase).toBe(5)
+      expect(recetas[1].pases[4].numeroPase).toBe(5);
       // medicamentos primera receta
-      expect(recetas[1].medicamentos[0].nombreMedicamento).toBe("PARACETAMOL CM 500 MG")
-      expect(recetas[1].medicamentos[0].medicamentoControlado).toBeFalsy()
-      expect(recetas[1].medicamentos[0].mensaje).toBe("1 cada 12 HRS. por 3 día(s)")
+      expect(recetas[1].medicamentos[0].nombreMedicamento).toBe(
+        "PARACETAMOL CM 500 MG"
+      );
+      expect(recetas[1].medicamentos[0].medicamentoControlado).toBeFalsy();
+      expect(recetas[1].medicamentos[0].mensaje).toBe(
+        "1 cada 12 HRS. por 3 día(s)"
+      );
     });
   });
 });
