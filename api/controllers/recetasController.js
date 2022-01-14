@@ -3,10 +3,10 @@ const { getMensajes } = require("../config");
 
 exports.getRecetasPaciente = async (req, res) => {
   try {
-    const arregloRecetas = await Recetas.find({
-      numeroPaciente: req.numeroPaciente,
+    const recetas = await Recetas.find({
+      rutPaciente: req.rutPaciente,
     }).exec();
-    res.status(200).send(arregloRecetas);
+    res.status(200).send(recetas);
   } catch (error) {
     if (process.env.NODE_ENV === "dev")
       return res.status(500).send({
