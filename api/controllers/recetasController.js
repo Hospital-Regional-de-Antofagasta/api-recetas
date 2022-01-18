@@ -4,7 +4,7 @@ const { getMensajes } = require("../config");
 exports.getRecetasPaciente = async (req, res) => {
   try {
     const recetas = await Recetas.find({
-      rutPaciente: req.rutPaciente,
+      rutPaciente: req.rut,
     }).exec();
     res.status(200).send(recetas);
   } catch (error) {

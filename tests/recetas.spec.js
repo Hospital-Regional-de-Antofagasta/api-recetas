@@ -54,7 +54,7 @@ describe("Endpoints", () => {
       token = jwt.sign(
         {
           _id: "000000000000",
-          rutPaciente: "22222222-2",
+          rut: "22222222-2",
         },
         secreto
       );
@@ -71,7 +71,7 @@ describe("Endpoints", () => {
       token = jwt.sign(
         {
           _id: "000000000000",
-          rutPaciente: "11111111-1",
+          rut: "11111111-1",
         },
         secreto
       );
