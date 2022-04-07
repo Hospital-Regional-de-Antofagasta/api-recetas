@@ -3,32 +3,32 @@ const Schema = mongoose.Schema;
 
 const schema = new Schema(
   {
-    correlativo: { type: Number, require: true },
-    numeroReceta: { type: Number, require: true },
-    tipoReceta: { type: Number, require: true },
-    rutPaciente: { type: String, require: true, select: false },
-    medicoPrescriptor: { type: String, require: true },
+    correlativo: { type: Number, required: true },
+    numeroReceta: { type: Number, required: true },
+    tipoReceta: { type: Number, required: true },
+    rutPaciente: { type: String, required: true, select: false },
+    medicoPrescriptor: { type: String, required: true },
     patologia: String,
     recetaRetenida: { type: Boolean, default: false },
-    fechaEmision: { type: Date, require: true },
-    codigoEstablecimiento: { type: String, require: true },
-    nombreEstablecimiento: { type: String, require: true },
+    fechaEmision: { type: Date, required: true },
+    codigoEstablecimiento: { type: String, required: true },
+    nombreEstablecimiento: { type: String, required: true },
     pases: [
       {
-        numeroReceta: { type: Number, require: true },
-        fechaEmisionFutura: { type: Date, require: true },
-        numeroPase: { type: Number, require: true },
+        numeroReceta: { type: Number, required: true },
+        fechaEmisionFutura: { type: Date, required: true },
+        numeroPase: { type: Number, required: true },
       },
     ],
     medicamentos: {
       type: [
         {
-          nombreMedicamento: { type: String, require: true },
+          nombreMedicamento: { type: String, required: true },
           medicamentoControlado: { type: Boolean, default: false },
-          mensaje: { type: String, require: true },
+          mensaje: { type: String, required: true },
         },
       ],
-      require: true,
+      required: true,
     },
   },
   { timestamps: true }
