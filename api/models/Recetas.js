@@ -3,26 +3,33 @@ const Schema = mongoose.Schema;
 
 const schema = new Schema(
   {
-    numeroRecetaOriginal: Number,
-    tipoRecetaOriginal: Number,
-    medicoPrescriptor: String,
-    numeroPaciente: { type: Number, select: false },
-    patologiaCronica: String,
-    recetaRetenida: Boolean,
+    correlativo: { type: Number, required: true },
+    numeroReceta: { type: Number, required: true },
+    tipoReceta: { type: Number, required: true },
+    rutPaciente: { type: String, required: true, select: false },
+    medicoPrescriptor: { type: String, required: true },
+    patologia: String,
+    recetaRetenida: { type: Boolean, default: false },
+    fechaEmision: { type: Date, required: true },
+    codigoEstablecimiento: { type: String, required: true },
+    nombreEstablecimiento: { type: String, required: true },
     pases: [
       {
-        numeroReceta: Number,
-        fechaEmision: Date,
-        numeroPase: Number,
+        numeroReceta: { type: Number, required: true },
+        fechaEmisionFutura: { type: Date, required: true },
+        numeroPase: { type: Number, required: true },
       },
     ],
-    medicamentos: [
-      {
-        nombreMaterial: String,
-        medicamentoControlado: Boolean,
-        mensaje: String,
-      },
-    ],
+    medicamentos: {
+      type: [
+        {
+          nombreMedicamento: { type: String, required: true },
+          medicamentoControlado: { type: Boolean, default: false },
+          mensaje: { type: String, required: true },
+        },
+      ],
+      required: true,
+    },
   },
   { timestamps: true }
 );

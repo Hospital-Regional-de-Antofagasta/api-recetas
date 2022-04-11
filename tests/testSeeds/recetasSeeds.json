@@ -1,48 +1,91 @@
 [
   {
-    "numeroRecetaOriginal": 24492986,
-    "tipoRecetaOriginal": 5,
-    "numeroPaciente":1,
-    "patologiaCronica": "Asma - EPOC",
+    "correlativo": 1,
+    "numeroReceta": 24492986,
+    "tipoReceta": 5,
+    "rutPaciente": "11111111-1",
     "medicoPrescriptor": "ALVARO PIZARRO GONZALEZ",
+    "patologia": "Asma - EPOC",
     "recetaRetenida": false,
+    "fechaEmision": "2021-03-16T04:00:00.000Z",
+    "codigoEstablecimiento": "HRA",
+    "nombreEstablecimiento": "Hospital Regional Antofagasta Dr. Leonardo Guzmán",
     "pases": [
       {
         "numeroReceta": 24492990,
-        "fechaEmision": "2021-04-16T04:00:00.000Z",
-        "numeroPase": 5
+        "fechaEmisionFutura": "2021-04-16T04:00:00.000Z",
+        "numeroPase": 1
       },
       {
         "numeroReceta": 24492991,
-        "fechaEmision": "2021-05-18T04:00:00.000Z",
-        "numeroPase": 6
+        "fechaEmisionFutura": "2021-05-16T04:00:00.000Z",
+        "numeroPase": 2
+      },
+      {
+        "numeroReceta": 24492992,
+        "fechaEmisionFutura": "2021-06-16T04:00:00.000Z",
+        "numeroPase": 3
+      },
+      {
+        "numeroReceta": 24492993,
+        "fechaEmisionFutura": "2021-07-16T04:00:00.000Z",
+        "numeroPase": 4
+      },
+      {
+        "numeroReceta": 24492994,
+        "fechaEmisionFutura": "2021-08-16T04:00:00.000Z",
+        "numeroPase": 5
       }
     ],
     "medicamentos": [
       {
-        "nombreMaterial": "PARACETAMOL CM 200 MG",
+        "nombreMedicamento": "PARACETAMOL CM 200 MG",
         "medicamentoControlado": true,
         "mensaje": "2 cada 6 HRS. por 2 día(s)"
       }
     ]
   },
   {
-    "numeroRecetaOriginal": 25097726,
-    "tipoRecetaOriginal": 5,
+    "correlativo": 2,
+    "numeroReceta": 25097726,
+    "tipoReceta": 5,
+    "rutPaciente": "11111111-1",
     "medicoPrescriptor": "GABRIEL MARTINEZ FUENTES",
-    "numeroPaciente":1,
-    "patologiaCronica": "Demencia y Trastornos Mentales Organicos",
+    "patologia": "Demencia y Trastornos Mentales Organicos",
     "recetaRetenida": true,
+    "fechaEmision": "2021-02-30T04:00:00.000Z",
+    "codigoEstablecimiento": "HRA",
+    "nombreEstablecimiento": "Hospital Regional Antofagasta Dr. Leonardo Guzmán",
     "pases": [
       {
         "numeroReceta": 25097731,
-        "fechaEmision": "2021-03-30T03:00:00.000Z",
-        "numeroPase": 6
+        "fechaEmisionFutura": "2021-03-30T03:00:00.000Z",
+        "numeroPase": 1
+      },
+      {
+        "numeroReceta": 25097732,
+        "fechaEmisionFutura": "2021-04-30T03:00:00.000Z",
+        "numeroPase": 2
+      },
+      {
+        "numeroReceta": 25097733,
+        "fechaEmisionFutura": "2021-05-30T03:00:00.000Z",
+        "numeroPase": 3
+      },
+      {
+        "numeroReceta": 25097734,
+        "fechaEmisionFutura": "2021-06-30T03:00:00.000Z",
+        "numeroPase": 4
+      },
+      {
+        "numeroReceta": 25097735,
+        "fechaEmisionFutura": "2021-07-30T03:00:00.000Z",
+        "numeroPase": 5
       }
     ],
     "medicamentos": [
       {
-        "nombreMaterial": "PARACETAMOL CM 500 MG",
+        "nombreMedicamento": "PARACETAMOL CM 500 MG",
         "medicamentoControlado": false,
         "mensaje": "1 cada 12 HRS. por 3 día(s)"
       }
